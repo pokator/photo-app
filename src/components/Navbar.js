@@ -14,13 +14,11 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div
-        className={`tab ${activeTab === 'Home' ? 'active' : ''}`}>
+      <div className={`tab ${activeTab === 'Home' ? 'active' : ''}`}>
           <Link to="/">Home</Link>
       </div>
-      <div
-        className={`tab ${activeTab === 'Lists' ? 'active' : ''}`}
-      ><Link to="list">Lists</Link>
+      <div className={`tab ${activeTab === 'Lists' ? 'active' : ''}`}>
+        <Link to="/list">Lists</Link>
       </div>
     </div>
   );

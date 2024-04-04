@@ -1,8 +1,5 @@
-import Header from './Header';
-import MenuItem from './MenuItem';
 import Navbar from './Navbar';
 import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ListComponent from './ListComponent';
 import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. 
 
