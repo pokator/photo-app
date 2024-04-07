@@ -1,17 +1,10 @@
-import '../HomePage.css';
-import Header from './Header';
+import React from 'react';
+
+import GoogleApiWrapper from './MapWithSearch';
 import MenuItem from './MenuItem';
-import Navbar from './Navbar';
-import React, {useState} from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import ListComponent from './ListComponent';
 import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. 
+import './HomePage.css';
 
-// You can use bootstrap or your own classes by using the className attribute in your elements.
-
-// Menu data. An array of objects where each object represents a menu item. 
-// Each menu item has an id, title, description, image name, and price.
-// You can use the image name to get the image from the images folder.
 const menuItems = [
   {
     "id": 1,
@@ -76,45 +69,17 @@ const menuItems = [
 ]
 
 function HomePage() {
-
-  const initialCounts = menuItems.reduce((acc, menuItem) => {
-    acc[menuItem.id] = 0;
-    return acc;
-  }, {});
-
-  const initialSubtotal = 0;
-
-  const [counts, setCounts] = useState(initialCounts);
-  const [subtotal, setSubtotal] = useState(initialSubtotal);
-
-  const updateSubtotal = (newSubtotal) => {
-    setSubtotal(newSubtotal);
-  };
-
- 
-  const resetAll = () => {
-    // Reset subtotal to 0
-    setSubtotal(0);
-    // Reset counts of all items to 0
-    const resetCounts = menuItems.reduce((acc, menuItem) => {
-      acc[menuItem.id] = 0;
-      return acc;
-    }, {});
-    setCounts(resetCounts);
-  };
-
- 
-
   return (
-    
-    <div>
-        {/* Different components used for header and menuItems. */}
-        <Navbar />
-        <Header />   
-        <MenuItem menuItems={menuItems} />
-        
+    <div className="home-page-container">
+      <div className="map-container">
+        <GoogleApiWrapper />
+      </div>
+      <div className="menu-items-container">
+        <div className="menu-items-scrollable">
+          <MenuItem menuItems={menuItems} />
+        </div>
+      </div>
     </div>
-    
   );
 }
 

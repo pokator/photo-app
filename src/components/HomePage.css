@@ -1,0 +1,21 @@
+.map-container {
+  width: 100%;
+  height: 400px;
+}
+
+.menu-items-container {
+  /* Add any additional styling for the menu items container */
+  margin-top: 70px; /* Adjust the margin to create space between the map and menu items */
+  height: 400px; /* Adjust the height according to your needs */
+  overflow-y: auto; /* This will make the container scrollable vertically */
+  overflow-x: hidden;
+}
+
+.home-page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-items-scrollable {
+  height: 100%; /* Allow the menu items container to take full height */
+}

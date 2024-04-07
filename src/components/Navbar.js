@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './navbar.css'; // Import CSS for styling
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -14,12 +14,8 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className={`tab ${activeTab === 'Home' ? 'active' : ''}`}>
-          <Link to="/">Home</Link>
-      </div>
-      <div className={`tab ${activeTab === 'Lists' ? 'active' : ''}`}>
-        <Link to="/list">Lists</Link>
-      </div>
+      <Link className={`tab ${activeTab === 'Home' ? 'active' : ''}`} to="/" onClick={() => handleTabChange('Home')}>Home</Link>
+      <Link className={`tab ${activeTab === 'Lists' ? 'active' : ''}`} to="/list" onClick={() => handleTabChange('Lists')}>Lists</Link>
     </div>
   );
 };
