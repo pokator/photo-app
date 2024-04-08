@@ -4,19 +4,22 @@ import GoogleApiWrapper from './MapWithSearch';
 import MenuItem from './MenuItem';
 import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. 
 import './HomePage.css';
+import LocationComponent from './LocationComponent'
 
 const menuItems = [
   {
     "id": 1,
     "title": "Zilker Bridge",
     "description": "Iconic bridge offering scenic views of Austin",
-    "imageName": "bridge1.jpg"
+    "imageName": "bridge1.jpg",
+    "location": "Austin, TX 78746"
   },
   {
     "id": 2,
     "title": "Ladybird Bridge",
     "description": "Bridge named after Lady Bird Lake, providing picturesque views",
-    "imageName": "bridge2.jpg"
+    "imageName": "bridge2.jpg",
+    "address" : "222 West Ave, Austin, TX 78701"
   },
   {
     "id": 3,

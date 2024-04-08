@@ -7,8 +7,8 @@
   /* Add any additional styling for the menu items container */
   margin-top: 70px; /* Adjust the margin to create space between the map and menu items */
   height: 400px; /* Adjust the height according to your needs */
-  overflow-y: auto; /* This will make the container scrollable vertically */
-  overflow-x: hidden;
+  /*overflow-y: auto; /* This will make the container scrollable vertically */
+  /*overflow-x: hidden;*/
 }
 
 .home-page-container {
@@ -18,4 +18,8 @@
 
 .menu-items-scrollable {
   height: 100%; /* Allow the menu items container to take full height */
+  position: absolute;
+  overflow-x: auto;
+  /*overflow-y: auto;*/
+  
 }
