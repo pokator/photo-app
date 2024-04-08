@@ -1,83 +1,35 @@
-// import Navbar from "./Navbar";
-// import React, { useState, useEffect } from "react";
-// import ListComponent from "./ListComponent";
-// import "bootstrap/dist/css/bootstrap.min.css"; // This imports bootstrap css styles.
-
-// function List() {
-//   const [lists, setLists] = useState([]);
-//   const [listName, setListName] = useState("");
-
-//   useEffect(() => {
-//     // Load lists from localStorage when component mounts
-//     const storedLists = JSON.parse(localStorage.getItem("lists")) || [];
-//     setLists(storedLists);
-//   }, []);
-
-//   const handleAddList = (e) => {
-//     e.preventDefault();
-//     if (!listName.trim()) return;
-//     const updatedLists = [...lists, listName];
-//     setLists([...lists, listName]);
-//     setListName("");
-//     localStorage.setItem("lists", JSON.stringify(updatedLists));
-//   };
-
-//   const handleDeleteList = (name) => {
-//     setLists(lists.filter((list) => list !== name));
-//   };
-
-//   return (
-//     <div>
-//       {/* <Navbar /> */}
-//       <form onSubmit={handleAddList}>
-//         <input
-//           type="text"
-//           placeholder="Enter list name"
-//           value={listName}
-//           onChange={(e) => setListName(e.target.value)}
-//         />
-//         <button type="submit">Add List</button>
-//       </form>
-//       <div>
-//         {lists.map((name, index) => (
-//           <ListComponent key={index} name={name} onDelete={handleDeleteList} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default List;
-
-
 import React, { useState, useEffect } from "react";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import IconButton from "@material-ui/core/IconButton";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import DeleteIcon from "@material-ui/icons/Delete";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import ListItem from "./ListComponent";
+import { Button, Container } from "@mui/material";
+import ListPage from "./ListPage";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { BrowserRouter as Router, useNavigate } from "react-router-dom"; // Import BrowserRouter and useNavigate
+
+import "./list.css"; // Import the CSS stylesheet
 
 import "bootstrap/dist/css/bootstrap.min.css"; // This imports bootstrap css styles.
 
-const useStyles = makeStyles((theme) => ({
-  card: {
-    maxWidth: 345,
-    marginBottom: theme.spacing(2),
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9
-  },
-}));
-
 function List() {
-  const classes = useStyles();
   const [lists, setLists] = useState([]);
-  const [listName, setListName] = useState("");
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const [openDialog, setOpenDialog] = useState(false);
+  const [newListName, setNewListName] = useState("");
+  const [selectedList, setSelectedList] = useState(null);
+
+  const handleCardClick = (name) => {
+    setSelectedList(name);
+  };
+
+  const handleBack = () => {
+    setSelectedList(null);
+  };
 
   useEffect(() => {
     // Load lists from localStorage when component mounts
@@ -85,13 +37,25 @@ function List() {
     setLists(storedLists);
   }, []);
 
-  const handleAddList = (e) => {
-    e.preventDefault();
-    if (!listName.trim()) return;
-    const updatedLists = [...lists, listName];
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const handleInputChange = (e) => {
+    setNewListName(e.target.value);
+  };
+
+  const handleAddList = () => {
+    if (!newListName.trim()) return;
+    const updatedLists = [...lists, newListName];
     setLists(updatedLists);
-    setListName("");
+    setNewListName("");
     localStorage.setItem("lists", JSON.stringify(updatedLists));
+    handleCloseDialog();
   };
 
   const handleDeleteList = (name) => {
@@ -102,44 +66,74 @@ function List() {
 
   return (
     <div>
-      <form onSubmit={handleAddList}>
-        <input
-          type="text"
-          placeholder="Enter list name"
-          value={listName}
-          onChange={(e) => setListName(e.target.value)}
-        />
-        <button type="submit">Add List</button>
-      </form>
-      <div>
-        {lists.map((name, index) => (
-          <Card key={index} className={classes.card}>
-            <CardHeader
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
-              }
-              title={name}
+      {selectedList ? (
+        <ListPage title={selectedList} onBack={handleBack} />
+      ) : (
+        <div className="cardContainer">
+          {lists.map((name, index) => (
+            <ListItem
+              key={index}
+              name={name}
+              onDelete={handleDeleteList}
+              onCardClick={handleCardClick}
             />
-            <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Some picture or content here...
-              </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-              <IconButton
-                aria-label="delete"
-                onClick={() => handleDeleteList(name)}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </CardActions>
-          </Card>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
+      <Container className="addContainer">
+        <Button
+          variant="contained"
+          onClick={handleOpenDialog}
+          startIcon={<span style={{ marginRight: "5px" }}>+</span>}
+          style={{
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            paddingTop: "10px",
+            paddingBottom: "10px",
+            borderRadius: "10px",
+          }} // Add padding to the button
+        >
+          Add New List
+        </Button>
+        <Dialog
+          className="list-dialog"
+          open={openDialog}
+          onClose={handleCloseDialog}
+        >
+          <DialogTitle>Add New List</DialogTitle>
+          <DialogContent>
+            <Typography variant="subtitle1" gutterBottom>
+              Add a title and image for your new list.
+            </Typography>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="list-name"
+              label="List Name"
+              type="text"
+              fullWidth
+              value={newListName}
+              onChange={handleInputChange}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseDialog}>Cancel</Button>
+            <Button onClick={handleAddList}>Add</Button>
+          </DialogActions>
+        </Dialog>
+      </Container>
     </div>
   );
 }
+
+// function ListWrapper() {
+//   return (
+//     <Router>
+//       {" "}
+//       {/* Render the List component inside a Router component */}
+//       <List />
+//     </Router>
+//   );
+// }
 
 export default List;

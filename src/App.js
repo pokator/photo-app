@@ -1,11 +1,10 @@
 import './App.css';
-import HomePage from './components/HomePage';
-import List from "./components/List";
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, NavLink } from 'react-router-dom';
 import TabView from './components/TabView';
-import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
+import HomePage from './components/HomePage';
+import List from './components/List';
 
 const FullHeightContainer = ({ children }) => (
   <div style={{ height: '100vh' }}>
@@ -17,20 +16,29 @@ function App() {
   const tabs = [
     {
       title: 'Home',
-      content: <HomePage/>,
+      path: '/',
+      exact: true,
     },
     {
       title: 'Lists',
-      content: <List/>,
+      path: '/lists',
+      exact: false,
     }
   ];
 
   return (
-    <FullHeightContainer>
-      <Paper elevation={3}>
-        <TabView tabs={tabs} />
-      </Paper>
-    </FullHeightContainer>
+    <Router>
+      <FullHeightContainer>
+        <Paper elevation={3}>
+          <TabView tabs={tabs} />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/lists" element={<List />} />
+            {/* Add more routes as needed */}
+          </Routes>
+        </Paper>
+      </FullHeightContainer>
+    </Router>
   );
 }
 

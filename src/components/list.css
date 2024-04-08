@@ -1,0 +1,35 @@
+.card {
+  max-width: 345px;
+  margin-bottom: 16px;
+  border-radius: 25%;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+.addContainer {
+    position: fixed;
+    bottom: 0; /* Set bottom to 0 */
+    left: 0;
+    width: 100%; /* Take full width */
+    text-align: center;
+    padding: 20px 0; /* Add padding top and bottom */
+    background-color: white; /* Add a background color */
+    z-index: 999; /* Set a high z-index to ensure it stays on top */
+    border-radius: 20%;
+    margin-bottom: 5%;
+}
+
+.list-dialog {
+    padding: 5%;
+    border-radius: 50%;
+}
