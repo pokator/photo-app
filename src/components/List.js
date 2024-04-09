@@ -70,7 +70,7 @@ function List() {
         <div>
           {console.log("Selected List:", lists[selectedList])}{" "}
           {/* Debug statement */}
-          <ListPage list={lists[selectedList]} />
+          <ListPage />
         </div>
       ) : (
         <div className="cardContainer">

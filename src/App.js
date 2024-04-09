@@ -28,7 +28,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/lists" element={<List />} />
-            <Route path="/lists/:name" element={<ListPage />} />
+            <Route path="/lists/:list" element={<ListPage />} />
             <Route path="/location/:name" element={<LocationPage />} />
           </Routes>
         {/* </Paper> */}

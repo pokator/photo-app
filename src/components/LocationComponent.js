@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ImageCarousel from './ImageCarousel';
 import MapWithSearch from './MapWithSearch';
 import { menuItems } from "./HomePage"
+import AddElementToList from './AddListPopup';
 
 const LocationPage = () => {
     const { name } = useParams();
@@ -16,6 +17,7 @@ const LocationPage = () => {
             <p>Description of the place</p>
             <p>Address</p>
             <MapWithSearch />
+            <AddElementToList menuItem={menuItem}/>
         </div>
     );
 };

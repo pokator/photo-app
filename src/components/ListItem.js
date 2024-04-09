@@ -42,7 +42,7 @@ function ListItem({ name, onDelete, onCardClick }) {
 
   const handleCardClick = () => {
     // Navigate to the ListPage with the list name as a URL parameter
-    navigate(`/list/${name}`);
+    navigate(`/lists/${name}`);
   };
 
   const handleMenuClick = (event) => {
