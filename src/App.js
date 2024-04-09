@@ -12,6 +12,7 @@ import HomePage from "./components/HomePage";
 import List from "./components/List";
 import ListPage from "./components/ListPage";
 import ListHeader from "./components/ListHeader";
+import LocationPage from "./components/LocationComponent";
 
 const FullHeightContainer = ({ children }) => (
   <div style={{ height: "100vh" }}>{children}</div>
@@ -21,17 +22,16 @@ function App() {
   return (
     <Router>
       <FullHeightContainer>
-        <Paper elevation={3}>
+        {/* <Paper elevation={3}> */}
           <Header />
           <div className="spacer" />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/lists" element={<List />} />
-            <Route path="/list/:name" element={<ListPage />} />
-            <Route path="/location/:name" element={<ListPage />} />
-            {/* Route for ListPage with parameter */}
+            <Route path="/lists/:name" element={<ListPage />} />
+            <Route path="/location/:name" element={<LocationPage />} />
           </Routes>
-        </Paper>
+        {/* </Paper> */}
       </FullHeightContainer>
     </Router>
   );

@@ -1,22 +1,28 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 
 const MenuItem = ({ menuItems, parent }) => {
+  const navigate = useNavigate();
   console.log(menuItems);
+
+  const handleCardClick = (menuItem) => {
+    // Navigate to the ListPage with the list name as a URL parameter
+    navigate(`/location/${menuItem.title}`);
+  };
 
   return (
     <>
       {menuItems && menuItems.map((menuItem) => (
-        <Link to={`/${parent}/${menuItem.id}`} key={menuItem.id}>
-          <div className="row" key={menuItem.id}>
+          <div className="row" key={menuItem.id} onClick={() => handleCardClick(menuItem)}>
             <div className="col-5">
               <div className="card-body d-flex flex-column align-items-center justify-content-center">
                 <img
-                  src={`images/${menuItem.imageName}`}
+                  src={`images/${menuItem.images[0]}`}
                   style={{ width: "90%", height: "auto" }}
                   className="image"
-                  alt={`Photo of ${menuItem.imageName}`}
+                  alt={`Photo of ${menuItem.images[0]}`}
                 />
               </div>
             </div>
@@ -30,7 +36,6 @@ const MenuItem = ({ menuItems, parent }) => {
               </div>
             </div>
           </div>
-        </Link>
       ))}
     </>
   );
