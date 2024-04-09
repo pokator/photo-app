@@ -7,7 +7,7 @@ const MenuItem = ({ menuItems, parent }) => {
 
   return (
     <>
-      {menuItems.map((menuItem) => (
+      {menuItems && menuItems.map((menuItem) => (
         <Link to={`/${parent}/${menuItem.id}`} key={menuItem.id}>
           <div className="row" key={menuItem.id}>
             <div className="col-5">
