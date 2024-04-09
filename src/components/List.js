@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ListItem from "./ListComponent";
+import ListItem from "./ListItem";
 import { Button, Container } from "@mui/material";
 import ListPage from "./ListPage";
 import {
@@ -13,10 +13,10 @@ import {
 
 import "./list.css"; // Import the CSS stylesheet
 
-import "bootstrap/dist/css/bootstrap.min.css"; // This imports bootstrap css styles.
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function List() {
-  const [lists, setLists] = useState({}); // Initialize lists as an empty object
+  const [lists, setLists] = useState({}); 
   const [openDialog, setOpenDialog] = useState(false);
   const [newListName, setNewListName] = useState("");
   const [selectedList, setSelectedList] = useState(null);
@@ -26,7 +26,6 @@ function List() {
   };
 
   useEffect(() => {
-    // Load lists from localStorage when component mounts
     const storedLists = JSON.parse(localStorage.getItem("lists")) || {};
     setLists(storedLists);
   }, []);
@@ -47,16 +46,8 @@ function List() {
     if (!newListName.trim()) return;
     const updatedLists = {
       ...lists,
-      [newListName]: [
-        {
-          id: 1,
-          title: "Zilker Bridge",
-          description: "Iconic bridge offering scenic views of Austin",
-          imageName: "bridge1.jpg",
-          location: "Austin, TX 78746",
-        },
-      ],
-    }; // Add new key-value pair to lists
+      [newListName]: [],
+    }; 
     setLists(updatedLists);
     console.log(
       "printing the initial list length: " + updatedLists[newListName].length
