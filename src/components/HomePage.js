@@ -1,5 +1,4 @@
 import React from 'react';
-
 import GoogleApiWrapper from './MapWithSearch';
 import MenuItem from './MenuItem';
 import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. 
@@ -79,7 +78,7 @@ function HomePage() {
       </div>
       <div className="menu-items-container">
         <div className="menu-items-scrollable">
-          <MenuItem menuItems={menuItems} />
+          <MenuItem menuItems={menuItems} parent={"location"} />
         </div>
       </div>
     </div>

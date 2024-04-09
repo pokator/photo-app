@@ -10,15 +10,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { BrowserRouter as Router, useNavigate } from "react-router-dom"; // Import BrowserRouter and useNavigate
 
 import "./list.css"; // Import the CSS stylesheet
 
 import "bootstrap/dist/css/bootstrap.min.css"; // This imports bootstrap css styles.
 
 function List() {
-  const [lists, setLists] = useState([]);
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const [lists, setLists] = useState({}); // Initialize lists as an empty object
   const [openDialog, setOpenDialog] = useState(false);
   const [newListName, setNewListName] = useState("");
   const [selectedList, setSelectedList] = useState(null);
@@ -27,13 +25,9 @@ function List() {
     setSelectedList(name);
   };
 
-  const handleBack = () => {
-    setSelectedList(null);
-  };
-
   useEffect(() => {
     // Load lists from localStorage when component mounts
-    const storedLists = JSON.parse(localStorage.getItem("lists")) || [];
+    const storedLists = JSON.parse(localStorage.getItem("lists")) || {};
     setLists(storedLists);
   }, []);
 
@@ -51,15 +45,30 @@ function List() {
 
   const handleAddList = () => {
     if (!newListName.trim()) return;
-    const updatedLists = [...lists, newListName];
+    const updatedLists = {
+      ...lists,
+      [newListName]: [
+        {
+          id: 1,
+          title: "Zilker Bridge",
+          description: "Iconic bridge offering scenic views of Austin",
+          imageName: "bridge1.jpg",
+          location: "Austin, TX 78746",
+        },
+      ],
+    }; // Add new key-value pair to lists
     setLists(updatedLists);
+    console.log(
+      "printing the initial list length: " + updatedLists[newListName].length
+    );
     setNewListName("");
     localStorage.setItem("lists", JSON.stringify(updatedLists));
     handleCloseDialog();
   };
 
   const handleDeleteList = (name) => {
-    const updatedLists = lists.filter((list) => list !== name);
+    const updatedLists = { ...lists };
+    delete updatedLists[name]; // Remove the key-value pair from lists
     setLists(updatedLists);
     localStorage.setItem("lists", JSON.stringify(updatedLists));
   };
@@ -67,12 +76,16 @@ function List() {
   return (
     <div>
       {selectedList ? (
-        <ListPage title={selectedList} onBack={handleBack} />
+        <div>
+          {console.log("Selected List:", lists[selectedList])}{" "}
+          {/* Debug statement */}
+          <ListPage list={lists[selectedList]} />
+        </div>
       ) : (
         <div className="cardContainer">
-          {lists.map((name, index) => (
+          {Object.keys(lists).map((name) => (
             <ListItem
-              key={index}
+              key={name}
               name={name}
               onDelete={handleDeleteList}
               onCardClick={handleCardClick}
@@ -125,15 +138,5 @@ function List() {
     </div>
   );
 }
-
-// function ListWrapper() {
-//   return (
-//     <Router>
-//       {" "}
-//       {/* Render the List component inside a Router component */}
-//       <List />
-//     </Router>
-//   );
-// }
 
 export default List;

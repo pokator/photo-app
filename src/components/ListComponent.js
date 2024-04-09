@@ -25,17 +25,17 @@ function ListItem({ name, onDelete }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
-    event.stopPropagation();
+    if (event) event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = (event) => {
-    event.stopPropagation();
+    if (event) event.stopPropagation();
     setAnchorEl(null);
   };
 
   const handleDelete = (event) => {
-    event.stopPropagation();
+    if (event) event.stopPropagation();
     onDelete(name);
     handleClose();
   };
@@ -47,7 +47,7 @@ function ListItem({ name, onDelete }) {
 
   const handleMenuClick = (event) => {
     // Prevent the click event from bubbling up to the Card
-    event.stopPropagation();
+    if (event) event.stopPropagation();
   };
 
   return (

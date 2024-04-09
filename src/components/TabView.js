@@ -36,34 +36,3 @@ const TabView = ({ tabs }) => {
 };
 
 export default TabView;
-
-// <div style={{ position: 'fixed', width: '100%', zIndex: 1000, top: 0 }}>
-//   <AppBar position="static" style={{ backgroundColor: '#fff' }}>
-//     <Tabs
-//       value={currentTabIndex}
-//       aria-label="tabs"
-//       TabIndicatorProps={{ style: { display: 'none' } }}
-//     >
-//       {tabs.map((tab, index) => (
-//         <Tab
-//           key={index}
-//           label={tab.title}
-//           component={Link}
-//           to={tab.path}
-//           style={{
-//             minWidth: 0,
-//             flex: 1,
-//             fontWeight: currentTabIndex === index ? 'bold' : 'normal',
-//           }}
-//         />
-//       ))}
-//     </Tabs>
-//   </AppBar>
-//   <div style={{ marginTop: 10 }}>
-//     {tabs.map((tab, index) => (
-//       <div key={index} style={{ display: currentTabIndex === index ? 'block' : 'none' }}>
-//         {tab.content}
-//       </div>
-//     ))}
-//   </div>
-// </div>

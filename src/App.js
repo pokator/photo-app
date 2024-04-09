@@ -1,55 +1,3 @@
-// import './App.css';
-// import React from 'react';
-// import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-// import TabView from './components/TabView';
-// import Paper from '@mui/material/Paper';
-// import HomePage from './components/HomePage';
-// import List from './components/List';
-// import ListPage from './components/ListPage';
-// import { useNavigate } from 'react-router-dom';
-
-// const FullHeightContainer = ({ children }) => (
-//   <div style={{ height: '100vh' }}>
-//     {children}
-//   </div>
-// );
-
-// function App() {
-//   const tabs = [
-//     {
-//       title: 'Home',
-//       path: '/',
-//       exact: true,
-//     },
-//     {
-//       title: 'Lists',
-//       path: '/lists',
-//       exact: false,
-//     }
-//   ];
-
-//   const location = useLocation();
-//   const isListsPage = location.pathname.startsWith('/lists');
-
-//   return (
-//     <Router>
-//       <FullHeightContainer>
-//         <Paper elevation={3}>
-//           <TabView tabs={tabs} />
-//           <div className='spacer'/>
-//           <Routes>
-//             <Route path="/" element={<HomePage />} />
-//             <Route path="/lists" element={<List />} />
-//             <Route path="/list/:name" element={<ListPage />} /> {/* Route for ListPage with parameter */}
-//           </Routes>
-//         </Paper>
-//       </FullHeightContainer>
-//     </Router>
-//   );
-// }
-
-// export default App;
-
 import "./App.css";
 import React from "react";
 import {
@@ -80,17 +28,13 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/lists" element={<List />} />
             <Route path="/list/:name" element={<ListPage />} />
+            <Route path="/location/:name" element={<ListPage />} />
             {/* Route for ListPage with parameter */}
           </Routes>
-          ;
         </Paper>
       </FullHeightContainer>
     </Router>
   );
-}
-
-function Inner() {
-  const { pathname, hash, key } = useLocation();
 }
 
 function Header() {
@@ -110,7 +54,21 @@ function Header() {
     },
   ];
 
-  return <>{isTabsVisible ? <TabView tabs={tabs} /> : <ListHeader />}</>;
+  // Define the title based on the current route
+  let title = "";
+  if (location.pathname.startsWith("/list")) {
+    // Extract the name from the route parameter
+    const name = location.pathname.split("/")[2];
+    // Set the title based on the name
+    title = `List: ${name}`;
+  } else if (location.pathname.startsWith("/location")) {
+    // Extract the name from the route parameter
+    const name = location.pathname.split("/")[2];
+    // Set the title based on the name
+    title = `Location: ${name}`;
+  }
+
+  return <>{isTabsVisible ? <TabView tabs={tabs} /> : <ListHeader title={title}/>}</>;
 }
 
 export default App;
