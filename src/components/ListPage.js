@@ -5,27 +5,21 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Container } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
-const ListPage = ({ title, onBack }) => {
-  return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={onBack}>
-            <ArrowBackIcon />
-          </IconButton>
-          <Typography variant="h6" component="div">
-            {title}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Container style={{ flexGrow: 1, marginTop: '64px' }}>
-        <h5>
-            asdfasdfasdf
-        </h5>
-      </Container>
-    </div>
-  );
-};
+
+const ListPage = () => {
+    const { name } = useParams();
+  
+    // Use the 'name' parameter in your component
+  
+    return (
+      <div>
+        <h1>List Page for {name}</h1>
+        {/* Render the content for the list page */}
+      </div>
+    );
+  };
+  
 
 export default ListPage;

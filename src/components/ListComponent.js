@@ -25,14 +25,17 @@ function ListItem({ name, onDelete }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (event) => {
+    event.stopPropagation();
     setAnchorEl(null);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (event) => {
+    event.stopPropagation();
     onDelete(name);
     handleClose();
   };
@@ -40,6 +43,11 @@ function ListItem({ name, onDelete }) {
   const handleCardClick = () => {
     // Navigate to the ListPage with the list name as a URL parameter
     navigate(`/list/${name}`);
+  };
+
+  const handleMenuClick = (event) => {
+    // Prevent the click event from bubbling up to the Card
+    event.stopPropagation();
   };
 
   return (
@@ -56,6 +64,7 @@ function ListItem({ name, onDelete }) {
               keepMounted
               open={Boolean(anchorEl)}
               onClose={handleClose}
+              onClick={handleMenuClick}
             >
               <MenuItem onClick={handleDelete}>
                 <DeleteIcon />

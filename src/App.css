@@ -5,3 +5,7 @@ body {
 .container {
     width: 100%;
 }
+
+.spacer {
+    margin-top: 20px;
+}
