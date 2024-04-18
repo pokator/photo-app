@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import "../App.css";
 import { useNavigate } from "react-router-dom";
+import './MenuItem.css'; // Import CSS for styling
+
 
 const MenuItem = ({ menuItems, parent }) => {
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ const MenuItem = ({ menuItems, parent }) => {
           <div className="row" key={menuItem.id} onClick={() => handleCardClick(menuItem)}>
             <div className="col-5">
               <div className="card-body d-flex flex-column align-items-center justify-content-center">
-                <img
+                <img 
                   src={`images/${menuItem.images[0]}`}
                   style={{ width: "90%", height: "auto" }}
                   className="image"
@@ -36,6 +38,8 @@ const MenuItem = ({ menuItems, parent }) => {
               </div>
             </div>
           </div>
+          
+          
       ))}
     </>
   );
