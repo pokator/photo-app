@@ -76,6 +76,36 @@ function HomePage() {
       <div className="map-container">
         <GoogleApiWrapper />
       </div>
+
+      <div className="dropdowns">
+        {/* add here */}
+
+        <div className="row">
+            <div className="col-6">
+              <div className="card-body d-flex flex-column align-items-left justify-content-left">
+              <select className="dropdown">
+                <option value="">Location Type</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              </div>
+            </div>
+
+            <div className="col-6">
+              <div className="card-body d-flex flex-column align-items-left justify-content-left">
+                <select className="dropdown">
+                  <option value="">Tags</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
       <div className="menu-items-container">
         <div className="menu-items-scrollable">
           <MenuItem menuItems={menuItems} parent={"location"} />

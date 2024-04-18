@@ -9,7 +9,7 @@
 
 .menu-items-container {
   /* Add any additional styling for the menu items container */
-  margin-top: 70px; /* Adjust the margin to create space between the map and menu items */
+  margin-top: 20px; /* Adjust the margin to create space between the map and menu items */
   height: 400px; /* Adjust the height according to your needs */
   /*overflow-y: auto; /* This will make the container scrollable vertically */
   /*overflow-x: hidden;*/
@@ -31,4 +31,9 @@
 
 .menu-items-scrollable .menu-item-card {
   margin-bottom: 20px; /* Add space between each card */
+}
+
+.dropdowns{
+  padding-top: 50px;
+  padding-left: 10px;
 }
