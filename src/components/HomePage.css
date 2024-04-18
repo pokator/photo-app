@@ -1,6 +1,10 @@
 .map-container {
   width: 100%;
-  height: 400px;
+  height: 450px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px; 
+  
 }
 
 .menu-items-container {
@@ -20,6 +24,11 @@
   height: 100%; /* Allow the menu items container to take full height */
   position: absolute;
   overflow-x: auto;
+  margin-bottom: 20px;
   /*overflow-y: auto;*/
   
+}
+
+.menu-items-scrollable .menu-item-card {
+  margin-bottom: 20px; /* Add space between each card */
 }
