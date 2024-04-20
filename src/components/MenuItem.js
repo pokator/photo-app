@@ -53,26 +53,26 @@ import { Grid, Card, CardContent, CardMedia, Typography, IconButton } from "@mui
 import DeleteIcon from '@mui/icons-material/Delete';
 import "../App.css";
 
-const MenuItem = ({ menuItems, parent, showDeleteButton }) => {
+const MenuItem = ({ menuItems, parent, showDeleteButton, onDelete }) => {
   const navigate = useNavigate();
 
   const handleCardClick = (menuItem) => {
     navigate(`/location/${menuItem.title}`);
   };
 
-  const handleDeleteClick = (menuItem) => {
-    // Handle deletion logic here
-    console.log(`Delete ${menuItem.title}`);
+  const handleDeleteClick = (event, itemId) => {
+    event.stopPropagation(); // Stop propagation of the click event
+    onDelete(itemId); // Call the onDelete function
   };
 
   return (
     <>
       {menuItems.map((menuItem) => (
-        <Grid container item xs={12} key={menuItem.id} onClick={() => handleCardClick(menuItem)}>
+        <Grid container xs={12} key={menuItem.id} onClick={() => handleCardClick(menuItem)}>
           <Card className="menu-item-card">
             <CardContent>
-              <Grid container alignItems="center" spacing={2}>
-                <Grid item xs={5} sm={5}>
+              <Grid container alignItems="center" spacing={1}>
+                <Grid item xs={4} sm={4}>
                   <CardMedia
                     component="img"
                     image={`images/${menuItem.images[0]}`}
@@ -80,17 +80,21 @@ const MenuItem = ({ menuItems, parent, showDeleteButton }) => {
                     sx={{ width: '100%', maxHeight: '100%' }}
                   />
                 </Grid>
-                <Grid item xs={6} sm={7}>
-                  <Typography variant="h5" component="h2" gutterBottom>
-                    {menuItem.title}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    {menuItem.description}
-                  </Typography>
+                <Grid item xs={8} sm={8} spacing={1} container>
+                  <Grid item xs={9} sm={9}>
+                    <Typography variant="h5" component="h2" gutterBottom>
+                      {menuItem.title}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {menuItem.description}
+                    </Typography>
+                  </Grid>
                   {showDeleteButton && (
-                    <IconButton onClick={() => handleDeleteClick(menuItem)}>
-                      <DeleteIcon />
-                    </IconButton>
+                    <Grid item xs="auto" sm="auto" alignItems="center">
+                      <IconButton onClick={(e) => handleDeleteClick(e, menuItem.id)}>
+                        <DeleteIcon/>
+                      </IconButton>
+                    </Grid>
                   )}
                 </Grid>
               </Grid>

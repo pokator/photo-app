@@ -21,10 +21,19 @@ const ListPage = () => {
 
   console.log("Rendering ListPage with listItems:", listItems);
 
+  const deleteItem = (itemId) => {
+    const updatedList = listItems.filter(item => item.id !== itemId);
+    setListItems(updatedList);
+    // Optionally, update localStorage
+    const storedLists = JSON.parse(localStorage.getItem("lists")) || {};
+    storedLists[list] = updatedList;
+    localStorage.setItem("lists", JSON.stringify(storedLists));
+  };
+
   return (
     <div className="menu-items-container">
       <div className="menu-items-scrollable">
-        <MenuItem parent={"location"} menuItems={listItems} showDeleteButton={true}/>
+        <MenuItem parent={"location"} menuItems={listItems} showDeleteButton={true} onDelete={deleteItem}/>
       </div>
     </div>
   );
