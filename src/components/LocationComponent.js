@@ -14,8 +14,8 @@ const LocationPage = () => {
         <div className="location-page">
             <h1>{decodedName}</h1>
             <ImageCarousel images={menuItem.images} />
-            <p>Description of the place</p>
-            <p>Address</p>
+            <p>{menuItem.description}</p>
+            <p>{menuItem.location}</p>
             <MapWithSearch />
             <AddElementToList menuItem={menuItem}/>
         </div>

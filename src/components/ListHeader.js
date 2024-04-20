@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 const CustomAppBar = ({ title }) => {
   const navigate = useNavigate();
+  const decodedTitle = decodeURIComponent(title);
+
+  
 
   const handleGoBack = () => {
     navigate(-1); // This will go back one step in the history
@@ -22,7 +25,7 @@ const CustomAppBar = ({ title }) => {
           <ArrowBack />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {title}
+          {decodedTitle}
         </Typography>
       </Toolbar>
     </AppBar>

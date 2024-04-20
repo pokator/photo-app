@@ -1,5 +1,11 @@
-
 .spacer {
-    padding-top: 0%;
-    padding-bottom: 0%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
 }

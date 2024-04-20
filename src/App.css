@@ -1,11 +1,7 @@
-body {
-    overflow: hidden;
-}
-
 .container {
     width: 100%;
 }
 
 .spacer {
-    margin-top: 20px;
+    margin-top: 10px;
 }

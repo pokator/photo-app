@@ -15,12 +15,12 @@ import ListHeader from "./components/ListHeader";
 import LocationPage from "./components/LocationComponent";
 
 const FullHeightContainer = ({ children }) => (
-  <div style={{ height: "100vh" }}>{children}</div>
+  <div style={{ height: "100vh"}}>{children}</div>
 );
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <FullHeightContainer>
         {/* <Paper elevation={3}> */}
           <Header />
