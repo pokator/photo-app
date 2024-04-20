@@ -24,7 +24,7 @@ const ListPage = () => {
   return (
     <div className="menu-items-container">
       <div className="menu-items-scrollable">
-        <MenuItem parent={"location"} menuItems={listItems} />
+        <MenuItem parent={"location"} menuItems={listItems} showDeleteButton={true}/>
       </div>
     </div>
   );
