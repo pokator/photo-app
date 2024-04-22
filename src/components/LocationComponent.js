@@ -37,11 +37,12 @@ function LocationPage() {
         setMenuItem(place);
         
         console.log("Updated menuItem: ", menuItem);
-    });
+    }, [itemList, decodedName]);
+
     //const menuItem = itemList.find(item => item.title === decodedName);
     const handleLocationClick = () => {
         // Construct Google Maps URL with the location address
-        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(menuItem.location)}`;
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(menuItem.address)}`;
         // Open the address in a new tab
         window.open(mapsUrl, '_blank');
     };
@@ -54,12 +55,13 @@ function LocationPage() {
                     <ImageCarousel images={menuItem.images || []} />
                     <p>{menuItem.description}</p>
                     <p onClick={handleLocationClick} style={{ cursor: 'pointer' }}>{menuItem.address}</p>
+                    <MapWithSearch location={menuItem.address}/>
+                    <AddElementToList menuItem={menuItem || {}} />
                 </>
             ) : (
                 <p>Loading or no data available.</p>
             )}
             
-            <AddElementToList menuItem={menuItem || {}} />
         </div>
     );
 };
