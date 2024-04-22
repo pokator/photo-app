@@ -9,14 +9,20 @@ const LocationPage = () => {
     const { name } = useParams();
     const decodedName = decodeURIComponent(name);
     const menuItem = menuItems.find(item => item.title === decodedName);
+    const handleLocationClick = () => {
+        // Construct Google Maps URL with the location address
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(menuItem.location)}`;
+        // Open the address in a new tab
+        window.open(mapsUrl, '_blank');
+    };
 
     return (
         <div className="location-page">
             <h1>{decodedName}</h1>
             <ImageCarousel images={menuItem.images} />
             <p>{menuItem.description}</p>
-            <p>{menuItem.location}</p>
-            <MapWithSearch />
+            <p onClick={handleLocationClick} style={{ cursor: 'pointer' }}>{menuItem.location}</p>
+            <MapWithSearch location={menuItem.location}/>
             <AddElementToList menuItem={menuItem}/>
         </div>
     );
