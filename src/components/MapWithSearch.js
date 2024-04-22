@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import { db } from "../firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, getDocs } from "firebase/firestore";
 
 class MapWithSearch extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class MapWithSearch extends Component {
       mapCenter: { lat: 37.774929, lng: -122.419416 },
       showUserLocation: true,
       mapLoaded: false,
-      menuItems: [], // Add state for menu items
+      menuItems: [],
     };
   }
 
@@ -33,7 +33,7 @@ class MapWithSearch extends Component {
         id: doc.id,
         ...doc.data(),
       }));
-      this.setState({ menuItems: fetchedItems }); // Update menuItems state
+      this.setState({ menuItems: fetchedItems });
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -49,18 +49,18 @@ class MapWithSearch extends Component {
           };
           this.setState({
             userLocation,
-            mapCenter: userLocation, // Set mapCenter to user's location once available
-            mapLoaded: true, // Mark the map as loaded
+            mapCenter: userLocation,
+            mapLoaded: true,
           });
         },
         (error) => {
           console.error("Error getting user location:", error);
-          this.setState({ mapLoaded: true }); // Mark the map as loaded even if there's an error
+          this.setState({ mapLoaded: true });
         }
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
-      this.setState({ mapLoaded: true }); // Mark the map as loaded if geolocation is not supported
+      this.setState({ mapLoaded: true });
     }
   }
 

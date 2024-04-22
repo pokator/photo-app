@@ -1,5 +1,5 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles.
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import FilterComponent from './FilterComponent';
 import MapWithSearch from './MapWithSearch';

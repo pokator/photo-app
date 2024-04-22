@@ -47,8 +47,6 @@ function FilterComponent() {
                     return itemName.includes(query);
                 });
             }
-    
-            // Update the items state with the filtered data
             setItems(items);
         } catch (error) {
             console.error("Error fetching filtered data: ", error);
@@ -64,15 +62,12 @@ function FilterComponent() {
         if (filter != "None" || searchQuery) { 
             fetchDataFiltered(filter, searchQuery);
         } else {
-            // If both filter and searchQuery are empty, fetch all data
             fetchData();
         }
     }, [filter, searchQuery]);
 
     const handleChange = (event) => {
         setFilter(event.target.value);
-        
-        //fetchDataFiltered(event.target.value);
     };
 
     const handleSearch = (query) => {

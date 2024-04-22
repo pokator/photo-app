@@ -6,11 +6,8 @@ import { useNavigate } from "react-router-dom";
 const CustomAppBar = ({ title }) => {
   const navigate = useNavigate();
   const decodedTitle = decodeURIComponent(title);
-
-  
-
   const handleGoBack = () => {
-    navigate(-1); // This will go back one step in the history
+    navigate(-1);
   };
 
   return (

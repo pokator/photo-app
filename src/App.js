@@ -1,6 +1,5 @@
 import "./App.css";
 import React from "react";
-import {db} from './firebase'
 import {
   BrowserRouter as Router,
   Route,
@@ -8,7 +7,6 @@ import {
   useLocation,
 } from "react-router-dom";
 import TabView from "./components/TabView";
-import Paper from "@mui/material/Paper";
 import HomePage from "./components/HomePage";
 import List from "./components/List";
 import ListPage from "./components/ListPage";
@@ -55,17 +53,12 @@ function Header() {
     },
   ];
 
-  // Define the title based on the current route
   let title = "";
   if (location.pathname.startsWith("/list")) {
-    // Extract the name from the route parameter
     const name = location.pathname.split("/")[2];
-    // Set the title based on the name
     title = `List: ${name}`;
   } else if (location.pathname.startsWith("/location")) {
-    // Extract the name from the route parameter
     const name = location.pathname.split("/")[2];
-    // Set the title based on the name
     title = `Location: ${name}`;
   }
 

@@ -20,13 +20,13 @@
 
 .addContainer {
     position: fixed;
-    bottom: 0; /* Set bottom to 0 */
+    bottom: 0;
     left: 0;
-    width: 100%; /* Take full width */
+    width: 100%;
     text-align: center;
-    padding: 20px 0; /* Add padding top and bottom */
-    background-color: white; /* Add a background color */
-    z-index: 999; /* Set a high z-index to ensure it stays on top */
+    padding: 20px 0; 
+    background-color: white;
+    z-index: 999;
     border-radius: 20%;
     margin-bottom: 5%;
 }

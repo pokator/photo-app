@@ -12,8 +12,8 @@ const MenuItem = ({ menuItems, parent, showDeleteButton, onDelete }) => {
   };
 
   const handleDeleteClick = (event, itemId) => {
-    event.stopPropagation(); // Stop propagation of the click event
-    onDelete(itemId); // Call the onDelete function
+    event.stopPropagation();
+    onDelete(itemId);
   };
 
   return (
@@ -27,8 +27,6 @@ const MenuItem = ({ menuItems, parent, showDeleteButton, onDelete }) => {
                   <CardMedia
                     component="img"
                     image={menuItem.photo_links}
-                    //image={`images/${menuItem.images[0]}`}
-                    //alt={`Photo of ${menuItem.images[0]}`}
                     alt={`Photo of ${menuItem.Name}`}
                     sx={{ width: '100%', maxHeight: '100%' }}
                   />

@@ -10,12 +10,12 @@
 }
 
 .menu-items-scrollable {
-  height: 100%; /* Allow the menu items container to take full height */
+  height: 100%;
   margin-bottom: 20px;
 }
 
 .menu-items-scrollable .menu-item-card {
-  margin-bottom: 20px; /* Add space between each card */
+  margin-bottom: 20px;
 }
 
 .dropdowns{

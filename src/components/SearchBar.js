@@ -15,9 +15,7 @@ class SearchBar extends Component {
 
   handleSearch(event) {
     const query = event.target.value;
-    console.log("SearchBar input change:", query); // Debugging line
     this.setState({ query });
-    // Call the onSearch prop function passed from the parent component
     this.props.onSearch(query);
   }
 
@@ -28,8 +26,8 @@ class SearchBar extends Component {
           value={this.state.query}
           onChange={this.handleSearch}
           placeholder="Search..."
-          variant="outlined" // or "filled" for a filled input
-          fullWidth // to make the input take up full width
+          variant="outlined"
+          fullWidth
         />
       </div>
     );

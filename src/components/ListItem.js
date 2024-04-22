@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
 import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    borderRadius: theme.spacing(1), // Adjust the value as needed
-    cursor: "pointer", // Add cursor pointer to indicate it's clickable
+    borderRadius: theme.spacing(1), 
+    cursor: "pointer",
   },
 }));
 
@@ -40,12 +38,10 @@ function ListItem({ name, onDelete, onCardClick }) {
   };
 
   const handleCardClick = () => {
-    // Navigate to the ListPage with the list name as a URL parameter
     navigate(`/lists/${name}`);
   };
 
   const handleMenuClick = (event) => {
-    // Prevent the click event from bubbling up to the Card
     if (event) event.stopPropagation();
   };
 
@@ -75,11 +71,6 @@ function ListItem({ name, onDelete, onCardClick }) {
         }
         title={name}
       />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          Some picture or content here...
-        </Typography>
-      </CardContent>
     </Card>
   );
 }

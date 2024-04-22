@@ -11,9 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Add } from "@mui/icons-material";
-
-import "./list.css"; // Import the CSS stylesheet
-
+import "./list.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function List() {
@@ -60,7 +58,7 @@ function List() {
 
   const handleDeleteList = (name) => {
     const updatedLists = { ...lists };
-    delete updatedLists[name]; // Remove the key-value pair from lists
+    delete updatedLists[name];
     setLists(updatedLists);
     localStorage.setItem("lists", JSON.stringify(updatedLists));
   };
@@ -69,8 +67,6 @@ function List() {
     <div>
       {selectedList ? (
         <div>
-          {console.log("Selected List:", lists[selectedList])}{" "}
-          {/* Debug statement */}
           <ListPage />
         </div>
       ) : (
@@ -98,7 +94,7 @@ function List() {
             borderRadius: "10px",
             backgroundColor: "#FEF7FF",
             color: "black"
-          }} // Add padding to the button
+          }}
         >
           Add New List
         </Button>
@@ -110,7 +106,7 @@ function List() {
           <DialogTitle>Add New List</DialogTitle>
           <DialogContent>
             <Typography variant="subtitle1" gutterBottom>
-              Add a title and image for your new list.
+              Add a title for your new list.
             </Typography>
             <TextField
               autoFocus

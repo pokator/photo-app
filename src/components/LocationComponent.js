@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ImageCarousel from "./ImageCarousel";
 import MapWithSearch from "./MapWithSearch";
-//import { menuItems } from "./HomePage"
 import AddElementToList from "./AddListPopup";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
@@ -24,7 +22,7 @@ function LocationPage() {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log("Fetched items:", items); // Check the structure and content of fetched items
+        console.log("Fetched items:", items);
         setItems(items);
       } catch (error) {
         console.error("Error fetching data: ", error);
@@ -36,21 +34,15 @@ function LocationPage() {
 
   useEffect(() => {
     const place = itemList.find((item) => item.Name === decodedName);
-
-    //console.log("item list: ", itemList);
-    //console.log("decoded name: ", decodedName);
     setMenuItem(place);
 
     console.log("Updated menuItem: ", menuItem);
   }, [itemList, decodedName]);
 
-  //const menuItem = itemList.find(item => item.title === decodedName);
   const handleLocationClick = () => {
-    // Construct Google Maps URL with the location address
     const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
       menuItem.address
     )}`;
-    // Open the address in a new tab
     window.open(mapsUrl, "_blank");
   };
 
@@ -65,7 +57,7 @@ function LocationPage() {
           
           
           <Paper
-            elevation={0} // Controls the depth of the shadow
+            elevation={0}
             style={{
               padding: "8px",
               borderRadius: "8px",
@@ -74,11 +66,10 @@ function LocationPage() {
             }}
           >
             <Notes sx={{ marginRight: "8px" }} />{" "}
-            {/* Icon indicating the description */}
             <Typography variant="body1">{menuItem.description}</Typography>
           </Paper>
           <Paper
-            elevation={1} // Controls the depth of the shadow
+            elevation={1}
             onClick={handleLocationClick}
             style={{
               cursor: "pointer",
@@ -88,7 +79,7 @@ function LocationPage() {
               alignItems: "center",
             }}
           >
-            <Room sx={{ mr: 1, color: "#6750A4" }} /> {/* Icon indicating the location */}
+            <Room sx={{ mr: 1, color: "#6750A4" }} />
             <Typography variant="body1">{menuItem.address}</Typography>
           </Paper>
           <div style={{ marginTop: "16px", display: "flex", alignItems: "center" }}>

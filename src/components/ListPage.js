@@ -24,7 +24,6 @@ const ListPage = () => {
   const deleteItem = (itemId) => {
     const updatedList = listItems.filter(item => item.id !== itemId);
     setListItems(updatedList);
-    // Optionally, update localStorage
     const storedLists = JSON.parse(localStorage.getItem("lists")) || {};
     storedLists[list] = updatedList;
     localStorage.setItem("lists", JSON.stringify(storedLists));
