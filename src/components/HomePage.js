@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import GoogleApiWrapper from './MapWithSearch';
 import MenuItem from './MenuItem';
 import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles.
@@ -8,7 +8,7 @@ import { Select, MenuItem as MuiMenuItem, FormControl, InputLabel, Grid } from '
 import {db} from '../firebase'
 import { collection, doc, setDoc, getDocs } from "firebase/firestore"; 
 
-export const menuItems = [
+/*export const menuItems = [
   {
     "id": 1,
     "title": "Zilker Bridge",
@@ -72,6 +72,9 @@ export const menuItems = [
     "images": ["zilker-waterfall.jpg"]
   }
 ]
+*/
+
+
 
 const query_res = await getDocs(collection(db, 'locations'));
   query_res.forEach((doc) => {
@@ -81,6 +84,22 @@ const query_res = await getDocs(collection(db, 'locations'));
 
 function HomePage() {
 
+  const [menuItems, setItems] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const querySnapshot = await getDocs(collection(db, "locations"));
+            const itemList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setItems(itemList);
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+        }
+    };
+
+    fetchData();
+  }, []);
+  
   return (
     <div className="home-page-container">
       <SearchBar/>
@@ -119,3 +138,4 @@ function HomePage() {
 }
 
 export default HomePage;
+
