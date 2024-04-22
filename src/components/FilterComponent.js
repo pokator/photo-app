@@ -4,9 +4,7 @@ import { collection, query, where, getDocs, or } from 'firebase/firestore';
 import {db} from '../firebase'
 import MenuItem from './MenuItem';
 import SearchBar from './SearchBar';
-
-
-
+import './HomePage.css';
 
 function FilterComponent() {
     const [menuItems, setItems] = useState([]);
@@ -92,19 +90,18 @@ function FilterComponent() {
                 id="location-type-select"
                 onChange={handleChange}
               >
+                <MuiMenuItem value="None">None</MuiMenuItem>
                 <MuiMenuItem value="Nature">Nature</MuiMenuItem>
                 <MuiMenuItem value="Architecture">Architecture</MuiMenuItem>
                 <MuiMenuItem value="Landscape">Landscape</MuiMenuItem>
                 <MuiMenuItem value="Portraits">Portraits</MuiMenuItem>
                 <MuiMenuItem value="City">City</MuiMenuItem>
                 <MuiMenuItem value="Skyline">Skyline</MuiMenuItem>
-                <MuiMenuItem value="None">None</MuiMenuItem>
               </Select>
             </FormControl>
           </Grid>
-
+          <div className='spacer'/>
           <SearchBar onSearch={handleSearch} />
-
         <div className="menu-items-container">
             <div className="menu-items-scrollable">
                 <MenuItem menuItems={menuItems} parent={"location"} />
