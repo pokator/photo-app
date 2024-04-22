@@ -14,9 +14,11 @@ class SearchBar extends Component {
   }
 
   handleSearch(event) {
-    this.setState({ query: event.target.value });
-    // Here you can perform a search based on the query and update the markers accordingly
-    // For simplicity, we're not implementing the search functionality in this example
+    const query = event.target.value;
+    console.log("SearchBar input change:", query); // Debugging line
+    this.setState({ query });
+    // Call the onSearch prop function passed from the parent component
+    this.props.onSearch(query);
   }
 
   render() {
