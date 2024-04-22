@@ -5,13 +5,12 @@ import { Link, useLocation } from "react-router-dom";
 const TabView = ({ tabs }) => {
   const location = useLocation();
 
-  // Find the index of the current route in the tabs array
   const currentTabIndex = tabs.findIndex(
     (tab) => tab.path === location.pathname
   );
 
   return (
-    <AppBar position="static" style={{ backgroundColor: "#fff" }}>
+    <AppBar position="static" style={{ backgroundColor: "#FEF7FF" }}>
       <Tabs
         value={currentTabIndex}
         aria-label="tabs"
@@ -27,6 +26,7 @@ const TabView = ({ tabs }) => {
               minWidth: 0,
               flex: 1,
               fontWeight: currentTabIndex === index ? "bold" : "normal",
+              color: "black"
             }}
           />
         ))}

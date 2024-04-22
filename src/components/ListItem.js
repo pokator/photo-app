@@ -64,8 +64,9 @@ function ListItem({ name, onDelete, onCardClick }) {
               open={Boolean(anchorEl)}
               onClose={handleClose}
               onClick={handleMenuClick}
+              style={{borderRadius: "10px"}}
             >
-              <MenuItem onClick={handleDelete}>
+              <MenuItem onClick={handleDelete} >
                 <DeleteIcon />
                 Delete
               </MenuItem>

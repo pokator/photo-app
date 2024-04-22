@@ -15,16 +15,16 @@ const CustomAppBar = ({ title }) => {
 
   return (
     <AppBar position="static">
-      <Toolbar>
+      <Toolbar sx={{ backgroundColor: "#FEF7FF" }}>
         <IconButton
           edge="start"
-          color="inherit"
+          color="#000000"
           aria-label="back"
           onClick={handleGoBack}
         >
           <ArrowBack />
         </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "black" }}>
           {decodedTitle}
         </Typography>
       </Toolbar>

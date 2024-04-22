@@ -56,8 +56,8 @@ function FilterComponent() {
               <Select
                 labelId="location-type-label"
                 id="location-type-select"
-                
                 onChange={handleChange}
+                style={{ outline: "2px solid red" }}
               >
                 <MuiMenuItem value="Nature">Nature</MuiMenuItem>
                 <MuiMenuItem value="Architecture">Architecture</MuiMenuItem>

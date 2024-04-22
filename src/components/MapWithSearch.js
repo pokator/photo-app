@@ -105,6 +105,7 @@ class MapWithSearch extends Component {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      borderRadius: "10px",
     };
 
     const mapStyles = {

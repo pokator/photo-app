@@ -20,7 +20,7 @@ const MenuItem = ({ menuItems, parent, showDeleteButton, onDelete }) => {
     <>
       {menuItems.map((menuItem) => (
         <Grid container key={menuItem.id} onClick={() => handleCardClick(menuItem)}>
-          <Card className="menu-item-card">
+          <Card className="menu-item-card" sx={{ backgroundColor: "#FEF7FF", borderRadius: "10px" }}>
             <CardContent>
               <Grid container alignItems="center" spacing={1}>
                 <Grid item xs={4} sm={4}>

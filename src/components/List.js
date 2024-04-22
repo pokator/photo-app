@@ -10,6 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { Add } from "@mui/icons-material";
 
 import "./list.css"; // Import the CSS stylesheet
 
@@ -88,13 +89,15 @@ function List() {
         <Button
           variant="contained"
           onClick={handleOpenDialog}
-          startIcon={<span style={{ marginRight: "5px" }}>+</span>}
+          startIcon={<Add style={{ color: 'black' }}/>}
           style={{
             paddingLeft: "20px",
             paddingRight: "20px",
             paddingTop: "10px",
             paddingBottom: "10px",
             borderRadius: "10px",
+            backgroundColor: "#FEF7FF",
+            color: "black"
           }} // Add padding to the button
         >
           Add New List
@@ -120,7 +123,7 @@ function List() {
               onChange={handleInputChange}
             />
           </DialogContent>
-          <DialogActions>
+          <DialogActions style={{color: "#6750A4"}}>
             <Button onClick={handleCloseDialog}>Cancel</Button>
             <Button onClick={handleAddList}>Add</Button>
           </DialogActions>
