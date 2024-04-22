@@ -1,11 +1,48 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import "./map.css"
+import { Map, GoogleApiWrapper } from 'google-maps-react';
+import "./map.css";
 
 class MapWithSearch extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userLocation: null,
+      mapCenter: { lat: 37.774929, lng: -122.419416 }, // Default to San Francisco coordinates
+      showUserLocation: true, // Enable user location
+      mapLoaded: false // Flag to indicate whether the map has loaded
+    };
+  }
+
+  componentDidMount() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          this.setState({
+            userLocation,
+            mapCenter: userLocation, // Set mapCenter to user's location once available
+            mapLoaded: true // Mark the map as loaded
+          });
+        },
+        (error) => {
+          console.error('Error getting user location:', error);
+          this.setState({ mapLoaded: true }); // Mark the map as loaded even if there's an error
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      this.setState({ mapLoaded: true }); // Mark the map as loaded if geolocation is not supported
+    }
+  }
+
   render() {
+    const { mapLoaded, mapCenter } = this.state;
+
     const mapContainerStyle = {
-      width: '100%', // Set the width to 90%
+      width: '100%', // Set the width to 100%
       height: '400px',
       position: 'relative',
       display: 'flex',
@@ -20,19 +57,26 @@ class MapWithSearch extends Component {
 
     return (
       <div className="search-bar" style={mapContainerStyle}>
+        {!mapLoaded && <div>Loading...</div>}
+        {mapLoaded && 
         <Map
           google={this.props.google}
           zoom={14}
           style={mapStyles}
-          initialCenter={{ lat: 37.774929, lng: -122.419416 }} // Default to San Francisco coordinates
+          initialCenter={mapCenter} // Set initialCenter to mapCenter state value
+          streetViewControl={false}
+          showUserLocation={true}
         >
-          <Marker position={{ lat: 37.774929, lng: -122.419416 }} />
+
         </Map>
+        }
       </div>
     );
   }
 }
 
 export default GoogleApiWrapper({
-    apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
 })(MapWithSearch);
+
+
