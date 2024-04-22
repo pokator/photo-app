@@ -59,7 +59,11 @@ function LocationPage() {
       <h1>{decodedName}</h1>
       {menuItem ? (
         <>
-          <ImageCarousel images={menuItem.images || []} />
+        <div className="rounded-div">
+            <img src = {menuItem.photo_links} width = "100%"/>
+        </div>
+          
+          
           <Paper
             elevation={0} // Controls the depth of the shadow
             style={{
