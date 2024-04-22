@@ -11,28 +11,33 @@ import { collection, getDocs } from "firebase/firestore";
 function LocationPage() {
     const { name } = useParams();
     const decodedName = decodeURIComponent(name);
-    const [itemList, setItemList] = useState([]);
-    const [menuItem, setMenuItem] = useState(null);
+    const [itemList, setItems] = useState([]);
+    const [menuItem, setMenuItem] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const querySnapshot = await getDocs(collection(db, "locations"));
                 const items = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                console.log(items);
-                setItemList(items);
-                
+                console.log("Fetched items:", items);  // Check the structure and content of fetched items
+                setItems(items);
             } catch (error) {
                 console.error("Error fetching data: ", error);
             }
-        }
-        
+        };
+    
+        fetchData(); 
     }, [name]); 
     
     useEffect(() => {
-        const item = itemList.find(item => item.name === decodedName);
-        setMenuItem(item);
-    }, [itemList, decodedName]);
+        const place = itemList.find(item => item.Name === decodedName);
+        
+        //console.log("item list: ", itemList);
+        //console.log("decoded name: ", decodedName);
+        setMenuItem(place);
+        
+        console.log("Updated menuItem: ", menuItem);
+    });
     //const menuItem = itemList.find(item => item.title === decodedName);
     const handleLocationClick = () => {
         // Construct Google Maps URL with the location address
@@ -53,7 +58,7 @@ function LocationPage() {
             ) : (
                 <p>Loading or no data available.</p>
             )}
-            <MapWithSearch location={menuItem.location}/>
+            
             <AddElementToList menuItem={menuItem || {}} />
         </div>
     );
