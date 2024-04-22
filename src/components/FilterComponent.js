@@ -30,7 +30,7 @@ function FilterComponent() {
             let q = query(collection(db, "locations"));
             
             // Apply filter condition
-            if(filter){
+            if(filter && filter != "None"){
                 q = query(q, where("tags", "array-contains", filter));
             }
     
@@ -57,8 +57,6 @@ function FilterComponent() {
         }
     }
     
-    
-
     useEffect(() => {
         fetchData(); 
     }, []);
@@ -93,7 +91,6 @@ function FilterComponent() {
                 labelId="location-type-label"
                 id="location-type-select"
                 onChange={handleChange}
-                style={{ outline: "2px solid red" }}
               >
                 <MuiMenuItem value="Nature">Nature</MuiMenuItem>
                 <MuiMenuItem value="Architecture">Architecture</MuiMenuItem>
