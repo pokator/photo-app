@@ -39,7 +39,7 @@ const MenuItem = ({ menuItems, parent, showDeleteButton, onDelete }) => {
                       {menuItem.name}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                      {menuItem.description}
+                      {menuItem.address}
                     </Typography>
                   </Grid>
                   {showDeleteButton && (
