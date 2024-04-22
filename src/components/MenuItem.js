@@ -8,7 +8,7 @@ const MenuItem = ({ menuItems, parent, showDeleteButton, onDelete }) => {
   const navigate = useNavigate();
 
   const handleCardClick = (menuItem) => {
-    navigate(`/location/${menuItem.name}`);
+    navigate(`/location/${menuItem.Name}`);
   };
 
   const handleDeleteClick = (event, itemId) => {
@@ -29,14 +29,14 @@ const MenuItem = ({ menuItems, parent, showDeleteButton, onDelete }) => {
                     image={menuItem.photo_links}
                     //image={`images/${menuItem.images[0]}`}
                     //alt={`Photo of ${menuItem.images[0]}`}
-                    alt={`Photo of ${menuItem.name}`}
+                    alt={`Photo of ${menuItem.Name}`}
                     sx={{ width: '100%', maxHeight: '100%' }}
                   />
                 </Grid>
                 <Grid item xs={8} sm={8} spacing={1} container>
                   <Grid item xs={9} sm={9}>
                     <Typography variant="h5" component="h2" gutterBottom>
-                      {menuItem.name}
+                      {menuItem.Name}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                       {menuItem.address}
