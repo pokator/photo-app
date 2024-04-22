@@ -1,0 +1,5 @@
+TODO
+
+- make searching and filtering work
+- implement list item deletion
+- pull data from the db

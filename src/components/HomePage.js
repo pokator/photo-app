@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css sty
 import './HomePage.css';
 import SearchBar from './SearchBar';
 import { Select, MenuItem as MuiMenuItem, FormControl, InputLabel, Grid } from '@mui/material';
+import {db} from '../firebase'
+import { collection, doc, setDoc, getDocs } from "firebase/firestore"; 
 
 export const menuItems = [
   {
@@ -71,7 +73,14 @@ export const menuItems = [
   }
 ]
 
+const query_res = await getDocs(collection(db, 'locations'));
+  query_res.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+  });
+
 function HomePage() {
+
   return (
     <div className="home-page-container">
       <SearchBar/>
