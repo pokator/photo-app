@@ -1,7 +1,13 @@
-.row{
-    padding-bottom: 10px;
+.row {
+  padding-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.image{
-    border-radius: 8px;
+.menu-item-card {
+  flex: 1;
+}
+
+.image {
+  border-radius: 8px;
 }
