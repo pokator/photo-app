@@ -40,9 +40,11 @@ function LocationPage() {
   }, [itemList, decodedName]);
 
   const handleLocationClick = () => {
+    // Construct Google Maps URL with the location address
     const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
       menuItem.address
     )}`;
+    // Open the address in a new tab
     window.open(mapsUrl, "_blank");
   };
 
@@ -58,6 +60,7 @@ function LocationPage() {
           
           <Paper
             elevation={0}
+            elevation={0}
             style={{
               padding: "8px",
               borderRadius: "8px",
@@ -69,6 +72,7 @@ function LocationPage() {
             <Typography variant="body1">{menuItem.description}</Typography>
           </Paper>
           <Paper
+            elevation={1}
             elevation={1}
             onClick={handleLocationClick}
             style={{
